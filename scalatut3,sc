@@ -1,0 +1,33 @@
+object scalatut3 {
+  println("Welcome to the Scala worksheet")   	//> Welcome to the Scala worksheet
+ 
+  val l=List(1,2,3,4,5,6,7,8)                 	//> l  : List[Int] = List(1, 2, 3, 4, 5, 6, 7, 8)
+  l(6)                                        	//> res0: Int = 7
+  val a=Array(1,2,3,4,5,6,7,8)                	//> a  : Array[Int] = Array(1, 2, 3, 4, 5, 6, 7, 8)
+  a(6)=10
+  a                                           	//> res1: Array[Int] = Array(1, 2, 3, 4, 5, 6, 10, 8)
+  //-2 :: -1 :: 0 :: l
+ 
+  val h=l.head                                	//> h  : Int = 1
+  val t=l.tail                                	//> t  : List[Int] = List(2, 3, 4, 5, 6, 7, 8)
+  h :: t                                      	//> res2: List[Int] = List(1, 2, 3, 4, 5, 6, 7, 8)
+ 
+  /*def reverse(l:List[Int]): List[Int] = {
+      val h=l.head
+      if(!l.tail.isEmpty) reverse(l.tail) ::: List(h) else List(h)
+      reverse(l.tail) ::: List(h)
+  }
+  reverse(l)*/
+ 
+  def reverse(l:List[Int]): List[Int] = {
+      l match{
+      case h :: tail => reverse(tail) ::: List(h)
+      //case List(h)=> l
+      case _ =>l
+      }
+  }                                           	//> reverse: (l: List[Int])List[Int]
+  reverse(l)                                  	//> res3: List[Int] = List(8, 7, 6, 5, 4, 3, 2, 1)
+ 
+  l.filter( a => a%2 ==0)                     	//> res4: List[Int] = List(2, 4, 6, 8)
+  l.map(x=>x*x).reduce(_+_)                   	//> res5: Int = 204
+}
